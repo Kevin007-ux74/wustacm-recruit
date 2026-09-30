@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="212" viewBox="0 0 900 212" role="img" aria-labelledby="title desc">
+  <title id="title">将通知邮箱加密为 age 文件</title>
+  <desc id="desc">本地输入通知邮箱，运行对应系统的提交脚本，得到 submissions/alice.age。</desc>
+  <rect width="900" height="212" rx="18" fill="#f6f8fa"/>
+  <rect x="22" y="45" width="236" height="122" rx="13" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="140" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#24292f">通知邮箱</text>
+  <text x="140" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#57606a">只在自己的电脑上输入</text>
+  <path d="M273 106h54m-16-14 16 14-16 14" fill="none" stroke="#57606a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="341" y="45" width="226" height="122" rx="13" fill="#ddf4ff" stroke="#54aeff" stroke-width="2"/>
+  <text x="454" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#0969da">运行提交脚本</text>
+  <text x="454" y="127" text-anchor="middle" font-family="monospace" font-size="13" fill="#24292f">submit.ps1 / submit.sh</text>
+  <path d="M582 106h54m-16-14 16 14-16 14" fill="none" stroke="#57606a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="650" y="45" width="228" height="122" rx="13" fill="#dafbe1" stroke="#2da44e" stroke-width="2"/>
+  <text x="764" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1a7f37">生成加密文件</text>
+  <text x="764" y="127" text-anchor="middle" font-family="monospace" font-size="15" fill="#24292f">submissions/alice.age</text>
+</svg>
