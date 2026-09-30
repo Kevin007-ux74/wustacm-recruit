@@ -1,0 +1,52 @@
+name: Validate submission PR
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  pull-requests: read
+  statuses: write
+
+jobs:
+  validate-submission:
+    name: validate-submission
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check changed files
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const username = pr.head.repo?.owner?.login?.toLowerCase();
+            let state = 'success';
+            let description = '只新增了本人 submissions 下的 .age 文件';
+
+            if (!username || username === context.repo.owner.toLowerCase()) {
+              state = 'failure';
+              description = '请从自己的 GitHub 账号 Fork 仓库后提交 PR';
+            } else {
+              const { data: files } = await github.rest.pulls.listFiles({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                per_page: 2,
+              });
+              const expected = `submissions/${username}.age`;
+              if (files.length !== 1 || files[0].filename !== expected || files[0].status !== 'added') {
+                state = 'failure';
+                description = `只能新增 ${expected}，不能修改其他文件`;
+              }
+            }
+
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: pr.head.sha,
+              state,
+              context: 'recruit/submission-files',
+              description,
+              target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
+
+            if (state !== 'success') core.setFailed(description);
